@@ -1,18 +1,18 @@
 import axios from "axios";
 
-const BASE_API = "/";
+const BASE_API = "https://localhost:8080/";
 
-export const getEmployee = (data) => axios.get(`${BASE_API}employee`,
+export const getEmployee = (data) => axios.get(`${BASE_API}admin/person`),
   {
     "firstName": data.firstName,
     "lastName": data.lastName,
     "email": data.email
   });
 
-export const getAllPosts = () => axios.get(`${BASE_API}employees`);
+export const getAllEmployees = () => axios.get(`${BASE_API}admin/people`);
 
 export const sendPost = (data) =>
-  axios.post(`${BASE_API}employee`,
+  axios.post(`${BASE_API}person`,
     {
       "firstName" : data.firstName,
       "lastName" : data.lastName,
@@ -20,6 +20,8 @@ export const sendPost = (data) =>
       "description": data.description
     }
   );
+
+export const deleteEmployee = () => axios.delete(`${BASE_API}admin/person`);
 
 /*
 export const sendPost = (data) =>
