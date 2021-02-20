@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_API = "https://localhost:8080/";
 
-export const getEmployee = (data) => axios.get(`${BASE_API}admin/person`),
+export const getEmployee = (data) => axios.get(`${BASE_API}admin/person`,
   {
     "firstName": data.firstName,
     "lastName": data.lastName,
