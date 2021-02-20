@@ -1,4 +1,4 @@
-import { SEARCH_EMPLOYEE, CREATE_EMPLOYEE } from "../actions/action.js";
+import { SEARCH_EMPLOYEE, CREATE_EMPLOYEE, SEARCH_BY_ID } from "../actions/action.js";
 
 const initialState = {
   employees: [],
@@ -20,6 +20,16 @@ const rootReducer = (state = initialState, action) => {
     case CREATE_EMPLOYEE:
       return {
         
+      };
+    
+    case SEARCH_BY_ID:
+      return {
+        employees: [
+          ...state.employees,
+          {
+            name: action.name,
+          }
+        ]
       }
 
     default:

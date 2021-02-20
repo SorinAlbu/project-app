@@ -1,6 +1,14 @@
 import axios from "axios";
 
-const BASE_API = "https://localhost:8080/";
+const BASE_API = "http://localhost:8989/";
+
+const options = {
+  headers: {
+    "Content-Type": "application/json",
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+  }
+}
 
 export const getEmployee = (data) => axios.get(`${BASE_API}admin/person`,
   {
@@ -9,7 +17,9 @@ export const getEmployee = (data) => axios.get(`${BASE_API}admin/person`,
     "email": data.email
   });
 
-export const getAllEmployees = () => axios.get(`${BASE_API}admin/people`);
+
+
+export const getAllEmployees = async() => await axios.get(`${BASE_API}admin/people`);
 
 export const sendPost = (data) =>
   axios.post(`${BASE_API}person`,
