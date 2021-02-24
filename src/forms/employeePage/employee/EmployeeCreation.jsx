@@ -11,38 +11,44 @@ const EmployeeCreation = () => {
   const handleClick = () => {
     formCheck();
 
-    const name = document.getElementById("nameCreation").value;
-    const email = document.getElementById("emailCreation").value;
-    const skill = document.getElementById("skillCreation").value;
-    const phone = document.getElementById("phoneCreation").value;
-    const source = document.getElementById("sourceCreation").value;
-    const address = document.getElementById("addressCreation").value;
-    const legalForm = document.getElementById("legalFormCreation").value;
-    const mobility = document.getElementById("mobilityCreation").value;
-    const yearsExperience = document.getElementById("yearsExperienceCreation").value;
-    const description = document.getElementById("yearsExperienceCreation").value;
-    
-    const employee = {
-      "name": name,
-      "email": email,
-      "primarySkill" : skill,
-      "phone": phone,
-      "source": source,
-      "address": address,
-      "legalForm": legalForm,
-      "mobility": mobility,
-      "yearsExperience": yearsExperience,
-      "description": description,
+    if (isValid) {
+      const name = document.getElementById("nameCreation").value;
+      const email = document.getElementById("emailCreation").value;
+      const primarySkill = document.getElementById("primarySkillCreation").value;
+      const skills = document.getElementById("otherSkillsCreation").value;
+      const phone = document.getElementById("phoneCreation").value;
+      const source = document.getElementById("sourceCreation").value;
+      const city = document.getElementById("cityCreation").value;
+      const legalForm = document.getElementById("legalFormCreation").value;
+      const mobility = document.getElementById("mobilityCreation").value;
+      const yearsExperience = document.getElementById("yearsExperienceCreation").value;
+      const description = document.getElementById("yearsExperienceCreation").value;
+      const salary = document.getElementById("salaryCreation").value;
+      
+      const employee = {
+        "name": name,
+        "email": email,
+        "primarySkill" : primarySkill,
+        "skills": skills,
+        "phone": phone,
+        "source": source,
+        "city": city,
+        "legalForm": legalForm,
+        "mobility": mobility,
+        "yearsExperience": yearsExperience,
+        "notes": description,
+        "salary": salary,
+      }
+      console.log(employee);
+  
+      createEmployee(employee)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
-    console.log(employee);
-
-    createEmployee(employee)
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   const formCheck = () => {
@@ -74,8 +80,10 @@ const EmployeeCreation = () => {
             <Col>
                 <Form.Control id="nameCreation" placeholder="Name" style={colStyle} required />
                 <Form.Control id="emailCreation" type="email" placeholder="Email" style={colStyle} required />
-                <Form.Control id="skillCreation" as="select" defaultValue={-1} style={colStyle}>
-                  <option disabled value={-1}>Select skill</option>
+                <Form.Control id="salaryCreation" placeholder="Salary" style={colStyle} ></Form.Control>
+                <Form.Control id="phoneCreation" placeholder="Phone" style={colStyle} />
+                <Form.Control id="primarySkillCreation" as="select" defaultValue={-1} style={colStyle} >
+                  <option disabled value={-1}>Select primary skill</option>
                   <option>React</option>
                   <option>Java</option>
                   <option>Javascript</option>
@@ -86,7 +94,6 @@ const EmployeeCreation = () => {
                   <option>Maven</option>
                   <option>Jenkins</option>
                 </Form.Control>
-                <Form.Control id="phoneCreation" placeholder="Phone" style={colStyle} />
             </Col>
             <Col>
                 <Form.Control id="sourceCreation" as="select" defaultValue={-1} style={colStyle}>
@@ -95,7 +102,7 @@ const EmployeeCreation = () => {
                     <option>BestJobs</option>
                     <option>Facebook</option>
                 </Form.Control>
-                <Form.Control id="addressCreation" placeholder="Address" style={colStyle} />
+                <Form.Control id="cityCreation" placeholder="City" style={colStyle} />
                 <Form.Control id="legalFormCreation" placeholder="Legal form" style={colStyle} />
                 <Form.Control id="yearsExperienceCreation" placeholder="Years experience" style={colStyle} />
                 <Form.Group id="mobilityCreation">
@@ -103,7 +110,7 @@ const EmployeeCreation = () => {
                 </Form.Group>
                 
             </Col>
-
+            <Form.Control as="textarea" rows={1} id="otherSkillsCreation" type="text" placeholder="Enter other skills" style={colStyle} />
             <Form.Control as="textarea" rows={3} id="descriptionCreation" type="text" placeholder="Enter description" style={colStyle} />
         </Form.Row>
 

@@ -26,11 +26,18 @@ export const getAllEmployees = async() => await axios.get(`${BASE_API}admin/peop
 export async function createEmployee(data) {
   return await axios.post(`${BASE_API}admin/person`,
     {
-      "name" : data.name,
-      "email" : data.email,
-      "notes": data.description,
-      "mobility": data.mobility,
+      "name": data.name,
+      "email": data.email,
+      "primarySkill" : data.primarySkill,
+      "skills": data.skills,
+      "phone": data.phone,
       "source": data.source,
+      "city": data.city,
+      "legalForm": data.legalForm,
+      "mobility": data.mobility,
+      "yearsExperience": data.yearsExperience,
+      "notes": data.description,
+      "salary": data.salary,
     });
   }
 
