@@ -1,16 +1,48 @@
 import React from 'react';
+import { useState } from "react";
 import { Form, Button, Col, Card } from 'react-bootstrap';
-import { searchEmployee } from '../../actions/action.js';
+import { getEmployees } from '../../api/employeeApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import EmployeeList from './EmployeeList';
 
 const EmployeeSearch = () => {
 
-  const handleClick = () => {
-    const email = document.getElementById("email").value;
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
+  const [employees, setEmployees] = useState(null);
+  //const [error, setError] = useState(null);
+  const [validated, setValidated] = useState(false);
+  let isValid = true;
 
-    searchEmployee(firstName, lastName, email);
+  const handleClick = (event) => {
+    formCheck();
+
+    if (isValid) {
+      const skill = document.getElementById("skillSearch").value;
+      const city = document.getElementById("citySearch").value;
+      const language = document.getElementById("languageSearch").value;
+      const yearsExperience = document.getElementById("rangeValue").value;
+  
+      const data = {
+        "skill" : skill == -1 ? '' : skill,
+        "city": city,
+        "yearsExperience": yearsExperience,
+        "language": language,
+      }
+      console.log(data);
+  
+      getEmployees(data)
+        .then((response) => {
+          setEmployees(response.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
+
+  const formCheck = () => {
+    const form = document.getElementById("formSearch");
+    isValid = form.checkValidity() === true ? true : false;
+    setValidated(true);
   };
 
   const colStyle = {
@@ -32,22 +64,42 @@ const EmployeeSearch = () => {
   }
 
   return (
+    <div>
     <Card style={cardContainer}>
       <Card.Body>
       <Card.Title>Search employees</Card.Title>
-    <Form>
-      <Col>
-        <Form.Control id="firstName" placeholder="First name" style={colStyle} />
-        <Form.Control id="lastName" placeholder="Last name" style={colStyle} />
-        <Form.Control id="email" type="email" placeholder="Enter email" style={colStyle} />
-        <Form.Label>Minimun Experience (years):</Form.Label>
-        <Form.Control id="rangeInput" type="range" min="1" max="25" step="1" onChange={handleRange}/>
-        <output id="rangeValue"></output>
-      </Col>
-      <Button variant="primary" onClick={handleClick}>Search</Button>
-    </Form>
+
+      <Form id="formSearch" validated={validated} >
+        <Col>
+          <Form.Control id="skillSearch" as="select" defaultValue={-1} style={colStyle} >
+            <option disabled value={-1}>Select skill</option>
+            <option>React</option>
+            <option>Java</option>
+            <option>Javascript</option>
+            <option>Hibernate</option>
+            <option>Spring</option>
+            <option>MySql</option>
+            <option>Docker</option>
+            <option>Maven</option>
+            <option>Jenkins</option>
+          </Form.Control>
+          <Form.Control id="citySearch" placeholder="City" style={colStyle} />
+          <Form.Control id="languageSearch" placeholder="Language" style={colStyle} />
+          <Form.Label>Minimun Experience (years):</Form.Label>
+          <Form.Control id="rangeInput" type="range" min="1" max="25" step="1" onChange={handleRange} />
+          <output id="rangeValue"></output>
+        </Col>
+
+        <Button variant="primary" type="button" onClick={handleClick}>Search</Button>
+        </Form>
     </Card.Body>
     </Card>
+
+    {employees && (
+      <EmployeeList employees={employees}/>
+    )}
+
+    </div>
   );
 };
 

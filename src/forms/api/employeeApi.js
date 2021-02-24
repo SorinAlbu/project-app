@@ -2,6 +2,7 @@ import axios from "axios";
 
 const BASE_API = "http://localhost:8989/";
 
+/*
 const options = {
   headers: {
     "Content-Type": "application/json",
@@ -9,29 +10,32 @@ const options = {
     "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
   }
 }
+*/
 
-export const getEmployee = (data) => axios.get(`${BASE_API}admin/person`,
-  {
-    "firstName": data.firstName,
-    "lastName": data.lastName,
-    "email": data.email
-  });
+export const getEmployees = (data) => {
+  let url = '?skill=' + data.skill +
+            '&language=' + data.language +
+            '&city=' + data.city +
+            '&yearsExperience=' + data.yearsExperience
 
-
+  axios.get(`${BASE_API}admin/people/` + url);
+}
 
 export const getAllEmployees = async() => await axios.get(`${BASE_API}admin/people`);
 
-export const sendPost = (data) =>
-  axios.post(`${BASE_API}person`,
+export const createEmployee = (data) =>
+  axios.post(`${BASE_API}admin/person`,
     {
-      "firstName" : data.firstName,
-      "lastName" : data.lastName,
+      "name" : data.firstName + ' ' + data.lastName,
       "email" : data.email,
-      "description": data.description
+      "notes": data.description,
+      "mobility": data.mobility,
+      "source": data.source,
+      
     }
   );
 
-export const deleteEmployee = () => axios.delete(`${BASE_API}admin/person`);
+export const deleteEmployee = async (id) => await axios.delete(`${BASE_API}admin/person/{id}`, id);
 
 /*
 export const sendPost = (data) =>

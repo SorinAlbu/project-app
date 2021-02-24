@@ -11,18 +11,10 @@ const EmployeePage = () => {
         paddingRight: "4rem",
     };
 
-    const handleSearch = () => {
-        console.log(getAllEmployees());
-        
-    };
-
     return (
         <div style={employeePgContainer}>
             <EmployeeSearch />
             <EmployeeCreation />
-
-            <input id="id" />
-            <button onClick={handleSearch}>cauta ID</button>
         </div>
     );
 };

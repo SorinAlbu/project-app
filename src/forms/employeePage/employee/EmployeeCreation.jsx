@@ -1,17 +1,52 @@
 import React from 'react';
+import { useState } from "react";
 import { Form, Button, Col, Card, } from 'react-bootstrap';
-import { createEmployee } from '../../actions/action.js';
+import { createEmployee } from '../../api/employeeApi';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const EmployeeCreation = () => {
+  const [validated, setValidated] = useState(false);
+  let isValid = true;
 
   const handleClick = () => {
-    const email = document.getElementById("email").value;
-    const firstName = document.getElementById("firstName").value;
-    const lastName = document.getElementById("lastName").value;
-    const description = document.getElementById("description").value;
+    formCheck();
+    
+    const name = document.getElementById("nameCreation").value;
+    const email = document.getElementById("emailCreation").value;
+    const skill = document.getElementById("skillCreation").value;
+    const phone = document.getElementById("phoneCreation").value;
+    const source = document.getElementById("sourceCreation").value;
+    const address = document.getElementById("addressCreation").value;
+    const legalForm = document.getElementById("legalFormCreation").value;
+    const mobility = document.getElementById("mobilityCreation").value;
+    const description = document.getElementById("descriptionCreation").value;
+    
+    const employee = {
+      "name": name,
+      "email": email,
+      "skill" : skill,
+      "phone": phone,
+      "source": source,
+      "address": address,
+      "legalForm": legalForm,
+      "mobility": mobility,
+      "description": description,
+    }
+    console.log(employee);
 
-    createEmployee(firstName, lastName, email, description);
+    createEmployee(employee)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  const formCheck = () => {
+    const form = document.getElementById("formCreation");
+    isValid = form.checkValidity() === true ? true : false;
+    setValidated(true);
   };
 
   const colStyle = {
@@ -32,22 +67,42 @@ const EmployeeCreation = () => {
     <Card style={cardContainer}>
       <Card.Body>
       <Card.Title>Create employee</Card.Title>
-    <Form>
+    <Form id="formCreation" validated={validated}>
         <Form.Row>
             <Col>
-                <Form.Control id="firstName" placeholder="First name" style={colStyle} />
-                <Form.Control id="email" type="email" placeholder="Enter email" style={colStyle} />
+                <Form.Control id="nameCreation" placeholder="Name" style={colStyle} />
+                <Form.Control id="emailCreation" type="email" placeholder="Email" style={colStyle} />
+                <Form.Control id="skillCreation" as="select" defaultValue={-1} style={colStyle}>
+                  <option disabled value={-1}>Select skill</option>
+                  <option>React</option>
+                  <option>Java</option>
+                  <option>Javascript</option>
+                  <option>Hibernate</option>
+                  <option>Spring</option>
+                  <option>MySql</option>
+                  <option>Docker</option>
+                  <option>Maven</option>
+                  <option>Jenkins</option>
+                </Form.Control>
+                <Form.Control id="phoneCreation" placeholder="Phone" style={colStyle} />
             </Col>
             <Col>
-                <Form.Control id="lastName" placeholder="Last name" style={colStyle} />
-                <Form.Control as="select" style={colStyle}>
-                    <option>-None-</option>
-                    <option>Employed</option>
-                    <option>Unemployed</option>
+                <Form.Control id="sourceCreation" as="select" defaultValue={-1} style={colStyle}>
+                <option disabled value={-1}>Select source</option>
+                    <option>LinkedIn</option>
+                    <option>BestJobs</option>
+                    <option>Facebook</option>
                 </Form.Control>
+                <Form.Control id="addressCreation" placeholder="Address" style={colStyle} />
+                <Form.Control id="legalFormCreation" placeholder="Legal form" style={colStyle} />
+                <Form.Group id="mobilityCreation">
+                  <Form.Check type="checkbox" label="Mobility" />
+                </Form.Group>
+                
+          
             </Col>
 
-            <Form.Control as="textarea" rows={3} id="description" type="text" placeholder="Enter description" style={colStyle} />
+            <Form.Control as="textarea" rows={3} id="descriptionCreation" type="text" placeholder="Enter description" style={colStyle} />
         </Form.Row>
 
       <Button variant="primary" onClick={handleClick}>Create</Button>

@@ -14,6 +14,7 @@ const Employee = (props) => {
       }}
     >
       <h3>{props.firstName} {props.lastName}</h3>
+      <p>{props.email}</p>
       <span style={{ marginTop: "8px" }}>{props.description}</span>
     </div>
   );

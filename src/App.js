@@ -7,7 +7,6 @@ import HomePage from './forms/homePage/HomePage';
 import ContactPage from './forms/contactPage/ContactPage';
 import CompanyPage from './forms/companyPage/CompanyPage';
 import Helmet from 'react-helmet';
-//import backgroundImage from "./images/img1";
 
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
     display: "flex",
     flexDirection: "column",
     flexWrap: "wrap",
-    //backgroundImage: `url(${backgroundImage})`,
   };
 
   const titleClass = {
