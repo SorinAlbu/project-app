@@ -25,7 +25,7 @@ const EmployeeCreation = () => {
     const employee = {
       "name": name,
       "email": email,
-      "skill" : skill,
+      "primarySkill" : skill,
       "phone": phone,
       "source": source,
       "address": address,

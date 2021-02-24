@@ -31,7 +31,6 @@ export async function createEmployee(data) {
       "notes": data.description,
       "mobility": data.mobility,
       "source": data.source,
-      
     });
   }
 
