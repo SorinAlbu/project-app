@@ -10,7 +10,7 @@ const EmployeeCreation = () => {
 
   const handleClick = () => {
     formCheck();
-    
+
     const name = document.getElementById("nameCreation").value;
     const email = document.getElementById("emailCreation").value;
     const skill = document.getElementById("skillCreation").value;
@@ -19,7 +19,8 @@ const EmployeeCreation = () => {
     const address = document.getElementById("addressCreation").value;
     const legalForm = document.getElementById("legalFormCreation").value;
     const mobility = document.getElementById("mobilityCreation").value;
-    const description = document.getElementById("descriptionCreation").value;
+    const yearsExperience = document.getElementById("yearsExperienceCreation").value;
+    const description = document.getElementById("yearsExperienceCreation").value;
     
     const employee = {
       "name": name,
@@ -30,6 +31,7 @@ const EmployeeCreation = () => {
       "address": address,
       "legalForm": legalForm,
       "mobility": mobility,
+      "yearsExperience": yearsExperience,
       "description": description,
     }
     console.log(employee);
@@ -70,8 +72,8 @@ const EmployeeCreation = () => {
     <Form id="formCreation" validated={validated}>
         <Form.Row>
             <Col>
-                <Form.Control id="nameCreation" placeholder="Name" style={colStyle} />
-                <Form.Control id="emailCreation" type="email" placeholder="Email" style={colStyle} />
+                <Form.Control id="nameCreation" placeholder="Name" style={colStyle} required />
+                <Form.Control id="emailCreation" type="email" placeholder="Email" style={colStyle} required />
                 <Form.Control id="skillCreation" as="select" defaultValue={-1} style={colStyle}>
                   <option disabled value={-1}>Select skill</option>
                   <option>React</option>
@@ -95,11 +97,11 @@ const EmployeeCreation = () => {
                 </Form.Control>
                 <Form.Control id="addressCreation" placeholder="Address" style={colStyle} />
                 <Form.Control id="legalFormCreation" placeholder="Legal form" style={colStyle} />
+                <Form.Control id="yearsExperienceCreation" placeholder="Years experience" style={colStyle} />
                 <Form.Group id="mobilityCreation">
                   <Form.Check type="checkbox" label="Mobility" />
                 </Form.Group>
                 
-          
             </Col>
 
             <Form.Control as="textarea" rows={3} id="descriptionCreation" type="text" placeholder="Enter description" style={colStyle} />

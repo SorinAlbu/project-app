@@ -28,16 +28,19 @@ const EmployeeSearch = () => {
         "language": language,
       }
       console.log(data);
-  
+
       getEmployees(data)
-        .then((response) => {
-          setEmployees(response.data);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+      .then((response) => {
+        console.log(response.data);
+        //setEmployees(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
   };
+
+
 
   const formCheck = () => {
     const form = document.getElementById("formSearch");
@@ -86,7 +89,7 @@ const EmployeeSearch = () => {
           <Form.Control id="citySearch" placeholder="City" style={colStyle} />
           <Form.Control id="languageSearch" placeholder="Language" style={colStyle} />
           <Form.Label>Minimun Experience (years):</Form.Label>
-          <Form.Control id="rangeInput" type="range" min="1" max="25" step="1" onChange={handleRange} />
+          <Form.Control id="rangeInput" type="range" min="0" max="25" step="1" onChange={handleRange} />
           <output id="rangeValue"></output>
         </Col>
 

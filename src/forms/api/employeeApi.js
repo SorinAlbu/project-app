@@ -12,28 +12,28 @@ const options = {
 }
 */
 
-export const getEmployees = (data) => {
+export async function getEmployees(data) {
   let url = '?skill=' + data.skill +
             '&language=' + data.language +
             '&city=' + data.city +
             '&yearsExperience=' + data.yearsExperience
 
-  axios.get(`${BASE_API}admin/people/` + url);
+  return await axios.get(`${BASE_API}admin/people/skill` + url);
 }
 
 export const getAllEmployees = async() => await axios.get(`${BASE_API}admin/people`);
 
-export const createEmployee = (data) =>
-  axios.post(`${BASE_API}admin/person`,
+export async function createEmployee(data) {
+  return await axios.post(`${BASE_API}admin/person`,
     {
-      "name" : data.firstName + ' ' + data.lastName,
+      "name" : data.name,
       "email" : data.email,
       "notes": data.description,
       "mobility": data.mobility,
       "source": data.source,
       
-    }
-  );
+    });
+  }
 
 export const deleteEmployee = async (id) => await axios.delete(`${BASE_API}admin/person/{id}`, id);
 
