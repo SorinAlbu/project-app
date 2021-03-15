@@ -36,12 +36,23 @@ export async function createEmployee(data) {
       "legalForm": data.legalForm,
       "mobility": data.mobility,
       "yearsExperience": data.yearsExperience,
-      "notes": data.description,
+      "notes": data.notes,
       "salary": data.salary,
     });
   }
 
-export const deleteEmployee = async (id) => await axios.delete(`${BASE_API}admin/person/{id}`, id);
+export async function deleteEmployees(deleteIds) {
+  return await axios.delete(`${BASE_API}admin/person/`, deleteIds);
+}
+
+export async function createUser(data) {
+  return await axios.post(`${BASE_API}admin/user`,
+    {
+      "username": data.username,
+      "password" : data.password,
+      "email": data.email
+    });
+  }
 
 /*
 export const sendPost = (data) =>

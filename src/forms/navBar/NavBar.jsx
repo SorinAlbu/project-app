@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faIndustry, faPeopleCarry, faHome, faPhone } from '@fortawesome/free-solid-svg-icons';
+import { faPeopleCarry, faHome, faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const NavBar = (props) => {
 
@@ -37,14 +37,28 @@ const NavBar = (props) => {
         </div>
         Home
       </Link>
+      
+      <Link style={linkStyle} to="/employees">
+        <div style={iconStyle}>
+          <FontAwesomeIcon icon={faSearch} />
+        </div>
+        Search Employee
+      </Link>
 
       <Link style={linkStyle} to="/employee">
         <div style={iconStyle}>
           <FontAwesomeIcon icon={faPeopleCarry} />
         </div>
-        Employee
+        Create Employee
       </Link>
+      
+    </div>
+  );
+};
 
+export default NavBar;
+
+/*
       <Link style={linkStyle} to="/company">
         <div style={iconStyle}>
           <FontAwesomeIcon icon={faIndustry} />
@@ -58,9 +72,4 @@ const NavBar = (props) => {
         </div>
         Contact
       </Link>
-      
-    </div>
-  );
-};
-
-export default NavBar;
+*/

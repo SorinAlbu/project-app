@@ -3,10 +3,11 @@ import { BrowserRouter, Route } from "react-router-dom";
 import NavBar from "./forms/navBar/NavBar";
 import LoginBar from "./forms/loginBar/LoginBar";
 import { Badge } from 'react-bootstrap';
-import EmployeePage from './forms/employeePage/EmployeePage';
+import EmployeeSearch from './forms/employeePage/employee/EmployeeSearch';
 import HomePage from './forms/homePage/HomePage';
-import ContactPage from './forms/contactPage/ContactPage';
-import CompanyPage from './forms/companyPage/CompanyPage';
+import EmployeeCreation from './forms/employeePage/employee/EmployeeCreation';
+//import ContactPage from './forms/contactPage/ContactPage';
+//import CompanyPage from './forms/companyPage/CompanyPage';
 import LoginPage from './forms/loginPage/LoginPage';
 import RegisterPage from './forms/registerPage/RegisterPage';
 import Helmet from 'react-helmet';
@@ -33,9 +34,8 @@ function App() {
         <BrowserRouter>
           <NavBar />
           <Route path="/home" exact component={HomePage} />
-          <Route path="/employee" exact component={EmployeePage} />
-          <Route path="/company" exact component={CompanyPage} />
-          <Route path="/contact" exact component={ContactPage} />
+          <Route path="/employees" exact component={EmployeeSearch} />
+          <Route path="/employee" exact component={EmployeeCreation} />
           <LoginBar />
           <Route path="/login" exact component = {LoginPage} />
           <Route path="/register" exact component = {RegisterPage} />
@@ -47,3 +47,8 @@ function App() {
 }
 
 export default App;
+
+/*
+  <Route path="/company" exact component={CompanyPage} />
+  <Route path="/contact" exact component={ContactPage} />
+*/

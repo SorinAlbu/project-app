@@ -1,22 +1,33 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import EmployeeCreation from './employee/EmployeeCreation';
+//import EmployeeCreation from './employee/EmployeeCreation';
 import EmployeeSearch from './employee/EmployeeSearch';
-import { getAllEmployees } from '../api/employeeApi';
+//import { Button } from 'react-bootstrap';
+
+//-----------------------UNUSED-------------------------
 
 const EmployeePage = () => {
 
     const employeePgContainer = {
         display: "flex",
-        paddingRight: "4rem",
+        justifyContent: "center",
+        margin: "4rem 0 0 0"
     };
+
+    /*
+    const handleClick = () => {}
+    */
 
     return (
         <div style={employeePgContainer}>
             <EmployeeSearch />
-            <EmployeeCreation />
         </div>
     );
 };
 
 export default EmployeePage;
+
+/*
+<Button variant="primary" type="button" onClick={handleClick}>Search</Button>
+<EmployeeCreation />
+*/
